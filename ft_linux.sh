@@ -75,8 +75,9 @@ mk_tools() {
 # 5.4
 build_binutils_step1() {
 	cd $SRCS
-	tar -xf $SOURCES/binutils-2.30.tar.xz
-	cd binutils-2.30
+	PKG=binutils-2.30
+	tar -xf $SOURCES/$PKG.tar.xz
+	cd $PKG
 	mkdir -v build
 	cd build
 	../configure --prefix=/tools            \
@@ -97,10 +98,11 @@ build_binutils_step1() {
 # 5.5
 build_gcc_step1() {
 	echo "prepairing gcc"
+	PKG=gcc-7.3.0
 	cd $SRCS
-	if [ -d gcc-7.3.0 ]; then
+	if [ -d $PKG ]; then
 		echo cleaning previous dir
-		rm -rf gcc-7.3.0
+		rm -rf $PKG
 		echo clean done
 	fi
 	tar -xf $SOURCES/gcc-7.3.0.tar.xz
