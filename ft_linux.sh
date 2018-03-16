@@ -1,15 +1,28 @@
 #!/bin/sh
 source ./config.sh
+SOURCES=$LFS/usr/src/sources
 ################################ GENERIC PART ##################################
 
-extract() {
+unpack() {
+	PKG=$1
+	FILE=$PKG.tar.$2
 	cd $SRCS
-	echo "Extracting $1"
-	if [ ! -f $SOURCES/$1 ]; then
-		echo "Error: failed to find sources."
+	if [ ! -f $SOURCES/$FILE ]; then
+		echo "error: unable to find $FILE"
 		exit 1
 	fi
-	tar -xf $SOURCES/$1
+	if [ -d $PKG ]; then
+		echo "Cleaning previous installation"
+		rm -r $PKG
+	fi
+	echo "Extracting $PKG"
+	tar -xf $SOURCES/$FILE
+	if [ ! -d $PKG ]; then
+		echo "failed to unpack source, check if $FILE exists"
+		exit 1
+	fi
+	cd $PKG
+	echo "Extraction ok"
 }
 
 compile() {
@@ -26,7 +39,7 @@ compile() {
 build_generic() {
 	PKG=$1
 	echo "Building $PKG"
-	extract $2
+	unpack $PKG $2
 	cd $PKG
 	echo "Configuring"
 	./configure --prefix=/tools $3
@@ -34,7 +47,6 @@ build_generic() {
 		echo "Error: failed to configure $PKG"
 		exit 1
 	fi
-	echo "Compiling"
 	compile $PKG
 	echo "Installing"
 	make $4 install
@@ -327,8 +339,8 @@ build_gcc_step2() {
 build_tclcore() {
 	PKG=tcl8.6.8
 	echo "making $PKG"
-	extract $PKG-src.tar.gz
-	cd $PKG/unix
+	unpack $PKG gz
+	cd unix
 	./configure --prefix=/tools
 	compile $PKG
 	make install
@@ -342,8 +354,7 @@ build_tclcore() {
 build_expect() {
 	PKG=expect5.45.4
 	echo "making $PKG"
-	extract $PKG.tar.gz
-	cd $PKG
+	unpack $PKG gz
 	cp -v configure{,.orig}
 	sed 's:/usr/local/bin:/bin:' configure.orig > configure
 	./configure --prefix=/tools       \
@@ -358,8 +369,7 @@ build_expect() {
 build_dejagnu() {
 	PKG=dejagnu-1.6.1
 	echo "making $PKG"
-	extract $PKG.tar.gz
-	cd $PKG
+	unpack $PKG gz
 	./configure --prefix=/tools
 	make install
 	echo "$PKG done"
@@ -368,15 +378,14 @@ build_dejagnu() {
 # 5.14 : M4
 build_m4() {
 	PKG=m4-1.4.18
-	build_generic $PKG $PKG.tar.xz
+	build_generic $PKG xz
 }
 
 # 5.15
 build_ncurses() {
 	PKG=ncurses-6.1
 	echo "Building $PKG"
-	extract $PKG.tar.gz
-	cd $PKG
+	unpack $PKG gz
 	sed -i s/mawk// configure
 	./configure --prefix=/tools \
 				--with-shared   \
@@ -391,21 +400,21 @@ build_ncurses() {
 
 # 5.16
 build_bash() {
-	build_generic bash-4.4.18 bash-4.4.18.tar.gz --without-bash-malloc	# 5.16
+	build_generic bash-4.4.18 gz --without-bash-malloc	# 5.16
 	ln -sv bash /tools/bin/sh
 }
 
 # 5.19 : coreutils
 build_coreutils() {
-	build_generic coreutils-8.29 coreutils-8.29.tar.xz \
+	build_generic coreutils-8.29 xz \
 		--enable-install-program=hostname
 }
 
 # 5.24 : gettext
 build_deftext() {
 	PKG=gettext-0.19.8.1
-	extract $PKG.tar.xz
-	cd $PKG/gettext-tools
+	unpack $PKG xz
+	cd gettext-tools
 	EMACS="no" ./configure --prefix=/tools --disable-shared
 	make -C gnulib-lib
 	make -C intl pluralx.c
@@ -418,8 +427,7 @@ build_deftext() {
 # 5.27 : make
 build_make() {
 	PKG=make-4.2.1
-	extract $PKG.tar.bz2
-	cd $PKG
+	unpack $PKG bz2
 	sed -i '211,217 d; 219,229 d; 232 d' glob/glob.c
 	./configure --prefix=/tools --without-guile
 	compile $PKG
@@ -429,8 +437,7 @@ build_make() {
 #5.29
 build_perl() {
 	PKG=perl-5.26.1
-	extract $PKG.tar.xz
-	cd $PKG
+	unpack $PKG xz
 	sh Configure -des -Dprefix=/tools -Dlibs=-lm
 	compile $PKG
 	cp -v perl cpan/podlators/scripts/pod2man /tools/bin
@@ -442,8 +449,7 @@ build_perl() {
 # 5.33 : util-linux
 build_utillinux() {
 	PKG=util-linux-2.31.1
-	extract $PKG.tar.xz
-	cd $PKG
+	unpack $PKG xz
 	./configure --prefix=/tools                \
 				--without-python               \
 				--disable-makeinstall-chown    \
@@ -477,27 +483,27 @@ create_tools() {
 	build_tclcore														# 5.11
 	build_expect														# 5.12
 	build_dejagnu														# 5.13
-	build_generic m4-1.4.18 m4-1.4.18.tar.xz							# 5.14
+	build_generic m4-1.4.18 xz											# 5.14
 	build_ncurses														# 5.15
 	build_bash															# 5.16
-	build_generic bison-3.0.4 bison-3.0.4.tar.xz						# 5.17
-	build_generic bzip2-1.0.6 bzip2-1.0.6.tar.gz "" PREFIX=/tools		# 5.18
+	build_generic bison-3.0.4 xz										# 5.17
+	build_generic bzip2-1.0.6 gz "" PREFIX=/tools						# 5.18
 	build_coreutils														# 5.19
-	build_generic diffutils-3.6 diffutils-3.6.tar.xz					# 5.20
-	build_generic file-5.32 file-5.32.tar.gz							# 5.21
-	build_generic findutils-4.6.0 findutils-4.6.0.tar.gz				# 5.22
-	build_generic gawk-4.2.1 gawk-4.2.1.tar.xz							# 5.23
+	build_generic diffutils-3.6 xz										# 5.20
+	build_generic file-5.32 gz											# 5.21
+	build_generic findutils-4.6.0 gz									# 5.22
+	build_generic gawk-4.2.1 xz											# 5.23
 	build_deftext														# 5.24
-	build_generic grep-3.1 grep-3.1.tar.xz								# 5.25
-	build_generic gzip-1.9 gzip-1.9.tar.xz								# 5.26
+	build_generic grep-3.1 xz											# 5.25
+	build_generic gzip-1.9 xz											# 5.26
 	build_make															# 5.27
-	build_generic patch-2.7.6 patch-2.7.6.tar.xz						# 5.28
+	build_generic patch-2.7.6 xz										# 5.28
 	build_perl															# 5.29
-	build_generic sed-4.4 sed-4.4.tar.xz								# 5.30
-	build_generic tar-1.30 tar-1.30.tar.xz								# 5.31
-	build_generic texinfo-6.5 texinfo-6.5.tar.xz						# 5.32
+	build_generic sed-4.4 xz											# 5.30
+	build_generic tar-1.30 xz											# 5.31
+	build_generic texinfo-6.5 xz										# 5.32
 	build_utillinux														# 5.33
-	build_generic xz-5.2.3 xz-5.2.3.tar.xz								# 5.34
+	build_generic xz-5.2.3 xz											# 5.34
 	# clean_objs														# 5.35
 	echo "Stage 5 complete ! it's something !"
 }
