@@ -16,6 +16,10 @@ extract() {
 	fi
 	echo "Extracting $PKG"
 	tar -xf $SOURCES/$FILE
+	if [ ! -d $PKG ]; then
+		echo "failed to unpack source, check if $FILE exists"
+		exit 1
+	fi
 	cd $PKG
 	echo "Extraction ok"
 }
@@ -1113,6 +1117,78 @@ dotexinfo() {
 	echo "$PKG done."
 }
 
+dovim() {
+	# thoses idiots devs named the content of the tar file differently that the
+	# file itself, so i cannot use extract...
+	PKG=vim-8.0.586
+	FILE=$SOURCES/$PKG.tar.bz2
+	DIR=vim80
+	cd $SRCS
+	if [ ! -f $FILE ]; then
+		echo "failed to found source $FILE"
+		exit 1
+	fi
+	tar -xf $FILE
+	if [ ! -d $DIR ]; then
+		echo "error: failed to unpack $PKG"
+		exit 1
+	fi
+	cd $DIR
+	echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
+	sed -i '/call/{s/split/xsplit/;s/303/492/}' src/testdir/test_recover.vim
+	./configure --prefix=/usr
+	compile $PKG
+	make install
+	ln -sv vim /usr/bin/vi
+	for L in  /usr/share/man/{,*/}man1/vim.1; do
+		ln -sv vim.1 $(dirname $L)/vi.1
+	done
+	ln -sv ../vim/vim80/doc /usr/share/doc/$PKG
+	cat > /etc/vimrc << "EOF"
+" Begin /etc/vimrc
+
+" Ensure defaults are set before customizing settings, not after
+source $VIMRUNTIME/defaults.vim
+let skip_defaults_vim=1 
+
+set nocompatible
+set backspace=2
+set mouse=a
+syntax on
+if (&term == "xterm") || (&term == "putty")
+  set background=dark
+endif
+
+" End /etc/vimrc
+EOF
+	echo "$PKG done."
+}
+
+dogit() {
+	PKG=git-2.16.2
+	URL=https://mirrors.edge.kernel.org/pub/software/scm/git/$PKG.tar.xz
+	if [ ! -f $SOURCES/$PKG.tar.xz ]; then
+		wget $URL -O $SOURCES/$PKG.tar.xz
+	fi
+	extract $PKG xz
+	./configure --prefix=/usr
+	compile $PKG
+	make install
+	echo "$PKG done."
+}
+
+dozsh() {
+	VERSION=5.4.2
+	PKG=zsh-$VERSION
+	URL=http://sourceforge.net/projects/zsh/files/zsh/$VERSION/$PACKAGE.tar.xz/download
+	if [ ! -f $SOURCES/$PKG.tar.xz ]; then
+		wget $URL -O $SOURCES/$PKG.tar.xz
+	fi
+	extract $PKG xz
+	build $PKG
+	echo "$PKG done."
+}
+
 echo "Hi from chroot"                                                    
 # make_dirs                                                              
 # make_symlinks                                  
@@ -1182,6 +1258,20 @@ echo "Hi from chroot"
 # dobin patch-2.7.6 xz
 # dodbus
 # doutilslinux
-domandb
-dotar
-dotexinfo
+# domandb
+# dotar
+# dotexinfo
+# dovim
+
+# custon packages
+# dogit
+# dobin nettle-3.4 gz
+# dobin gnutls-3.6.2 xz "--with-included-libtasn1 --with-included-unistring --without-p11-kit"
+dobin wget-1.19 xz
+# dowget
+dozsh
+
+# cleaning
+#rm -rfv /tmp/*
+#find /usr/lib -name \*.la -delete
+
