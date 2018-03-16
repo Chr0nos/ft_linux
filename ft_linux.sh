@@ -81,10 +81,8 @@ mk_tools() {
 
 # 5.4
 build_binutils_step1() {
-	cd $SRCS
 	PKG=binutils-2.30
-	tar -xf $SOURCES/$PKG.tar.xz
-	cd $PKG
+	unpack $PKG xz
 	mkdir -v build
 	cd build
 	../configure --prefix=/tools            \
@@ -330,7 +328,7 @@ build_gcc_step2() {
 		--disable-libgomp
 	compile $PKG $MAXCORE
 	make install
-	echo 'int main(){}' > dummy.c
+	echo 'int main(void){ return (0); }' > dummy.c
 	$LFS_TGT-gcc dummy.c
 	readelf -l a.out | grep ': /tools'
 }
