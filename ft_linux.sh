@@ -47,11 +47,6 @@ build_generic() {
 # 3.1
 get_sources() {
 	mkdir -pv $LFS
-	curl http://fr.linuxfromscratch.org/view/lfs-systemd-svn/wget-list -o wget-list
-	if [ $? != 0 ]; then
-		echo "error: failed to get sources, this cannot continue"
-		exit 1
-	fi
 	mkdir -pv sources
 	chmod -v a+wt sources
 	wget --input-file=wget-list --continue --directory-prefix=sources/
@@ -204,7 +199,7 @@ build_glibc() {
 	echo 'int main(){}' > dummy.c
 	/tools/bin/$LFS_TGT-gcc dummy.c
 	if [ ! -f a.out ]; then
-		echo "failed to compile a.out, quit"
+		echo "[$PKG] failed to compile a.out, quit"
 		exit 1
 	fi
 	readelf -l a.out | grep ': /tools'
@@ -530,7 +525,7 @@ sysmount() {
 echo "target: $LFS"
 
 # 5.0
-# create_tools
+create_tools
 
 # 6.0
 echo "please run:"
