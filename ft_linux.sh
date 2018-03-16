@@ -12,6 +12,16 @@ extract() {
 	tar -xf $SOURCES/$1
 }
 
+compile() {
+	PKG=$1
+	echo "Compiling $PKG"
+	make -j$2
+	if [ $? != 0 ]; then
+		echo "compilation failed for $PKG"
+		exit 1
+	fi
+}
+
 # usage : build_generic PKG SOURCEFILE <options to configure> 
 build_generic() {
 	PKG=$1
@@ -20,8 +30,12 @@ build_generic() {
 	cd $PKG
 	echo "Configuring"
 	./configure --prefix=/tools $3
+	if [ $? != 0 ]; then
+		echo "Error: failed to configure $PKG"
+		exit 1
+	fi
 	echo "Compiling"
-	make -j
+	compile $PKG
 	echo "Installing"
 	make $4 install
 	echo "$PKG done."
@@ -34,6 +48,10 @@ build_generic() {
 get_sources() {
 	mkdir -pv $LFS
 	curl http://fr.linuxfromscratch.org/view/lfs-systemd-svn/wget-list -o wget-list
+	if [ $? != 0 ]; then
+		echo "error: failed to get sources, this cannot continue"
+		exit 1
+	fi
 	mkdir -pv sources
 	chmod -v a+wt sources
 	wget --input-file=wget-list --continue --directory-prefix=sources/
@@ -45,6 +63,10 @@ get_sources() {
 mk_tools() {
 	mkdir -v $LFS/tools
 	sudo ln -sv $LFS/tools /
+	if [ ! -l /tools ]; then
+		echo "error: you need to manualy create a link /tools to $LFS/tools"
+		exit 1
+	fi
 }
 
 
@@ -63,7 +85,7 @@ build_binutils_step1() {
 			     --target=$LFS_TGT          \
 			     --disable-nls              \
 			     --disable-werro
-	make -j
+	compile $PKG
 	case $(uname -m) in
   		x86_64) mkdir -v /tools/lib && ln -sv lib /tools/lib64 ;;
 	esac
@@ -140,7 +162,7 @@ build_gcc_step1() {
 		--disable-libvtv                               \
 		--disable-libstdcxx                            \
 		--enable-languages=c,c++
-	make -j$MAXCORE
+	compile $PKG $MAXCORE
 	make install
 }
 
@@ -173,13 +195,21 @@ build_glibc() {
 		--with-headers=/tools/include      \
 		libc_cv_forced_unwind=yes          \
 		libc_cv_c_cleanup=yes
-	make -j$MAXCORE
+	compile $PKG $MAXCORE
 	make install
 
 	# critical test ! do not skip ! i'm serious dude
 	echo 'int main(){}' > dummy.c
 	/tools/bin/$LFS_TGT-gcc dummy.c
+	if [ ! -f a.out ]; then
+		echo "failed to compile a.out, quit"
+		exit 1
+	fi
 	readelf -l a.out | grep ': /tools'
+	if [ $? != 0 ]; then
+		echo "failed to read elf file, you are domed ($PKG)"
+		exit 1
+	fi
 	rm -v dummy.c a.out
 }
 
@@ -201,7 +231,7 @@ build_stdlibcxx() {
 		--disable-libstdcxx-threads     \
 		--disable-libstdcxx-pch         \
 		--with-gxx-include-dir=/tools/$LFS_TGT/include/c++/7.3.0
-	make -j
+	compile $PKG
 	make install
 }
 
@@ -224,7 +254,7 @@ build_binutils_step2() {
     	--disable-werror           \
 		--with-lib-path=/tools/lib \
 		--with-sysroot
-	make -j
+	compile $PKG
 	make install
 	make -C ld clean
 	make -C ld LIB_PATH=/usr/lib:/lib
@@ -289,7 +319,7 @@ build_gcc_step2() {
 		--disable-multilib                             \
 		--disable-bootstrap                            \
 		--disable-libgomp
-	make -j6
+	compile $PKG $MAXCORE
 	make install
 	echo 'int main(){}' > dummy.c
 	$LFS_TGT-gcc dummy.c
@@ -303,8 +333,7 @@ build_tclcore() {
 	extract $PKG-src.tar.gz
 	cd $PKG/unix
 	./configure --prefix=/tools
-	make -j
-	TZ=UTC make test
+	compile $PKG
 	make install
 	chmod -v u+w /tools/lib/libtcl8.6.so
 	make install-private-headers
@@ -323,7 +352,7 @@ build_expect() {
 	./configure --prefix=/tools       \
 				--with-tcl=/tools/lib \
 				--with-tclinclude=/tools/include
-	make -j
+	compile $PKG
 	make SCRIPTS="" install
 	echo "$PKG done"
 }
@@ -358,7 +387,7 @@ build_ncurses() {
 				--without-ada   \
 				--enable-widec  \
 				--enable-overwrite
-	make -j
+	compile $PKG
 	make install
 	echo "$PKG done."
 }
@@ -392,11 +421,11 @@ build_deftext() {
 # 5.27 : make
 build_make() {
 	PKG=make-4.2.1
-	extract $PKG.tar.bz1
+	extract $PKG.tar.bz2
 	cd $PKG
 	sed -i '211,217 d; 219,229 d; 232 d' glob/glob.c
 	./configure --prefix=/tools --without-guile
-	make -j
+	compile $PKG
 	make install
 }
 
@@ -406,7 +435,7 @@ build_perl() {
 	extract $PKG.tar.xz
 	cd $PKG
 	sh Configure -des -Dprefix=/tools -Dlibs=-lm
-	make -j
+	compile $PKG
 	cp -v perl cpan/podlators/scripts/pod2man /tools/bin
 	mkdir -pv /tools/lib/perl5/5.26.1
 	cp -Rv lib/* /tools/lib/perl5/5.26.1
@@ -424,7 +453,7 @@ build_utillinux() {
 				--without-systemdsystemunitdir \
 				--without-ncurses              \
 				PKG_CONFIG=""
-	make -j
+	compile $PKG
 	make install
 	echo "$PKG done."
 

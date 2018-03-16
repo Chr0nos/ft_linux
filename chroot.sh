@@ -1297,7 +1297,6 @@ echo "Hi from chroot"
 # dobin nettle-3.4 gz
 # dobin gnutls-3.6.2 xz "--with-included-libtasn1 --with-included-unistring --without-p11-kit"
 # dobin wget-1.19 xz
-# dowget
 # dozsh
 
 # cleaning
