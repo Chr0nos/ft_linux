@@ -1,3 +1,26 @@
+# The project
+this is a 42 school project, you can check the subjet here
+
+> https://cdn.intra.42.fr/pdf/pdf/758/ft_linux.pdf
+
+the global idea is to build a linux from scratch system by hand.
+
+# Host system
+i do the tests on an arch linux 64 bits inside a virtual machine with 12Gb ram
+
+# Dependencies
+the scripts requires the following dependencies on the host system:
+
+> curl
+
+> wget
+
+> sudo
+
+> glibc
+
+> gcc
+
 # Partitioning
 > sudo cfisk /dev/sda
 
