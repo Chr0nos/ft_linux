@@ -1,6 +1,7 @@
 #!/tools/bin/bash
 export SRCS=/usr/src
 export SOURCES=$SRCS/sources
+export LFS_USER=snicolet
 
 extract() {
 	PKG=$1
@@ -1180,13 +1181,41 @@ dogit() {
 dozsh() {
 	VERSION=5.4.2
 	PKG=zsh-$VERSION
-	URL=http://sourceforge.net/projects/zsh/files/zsh/$VERSION/$PACKAGE.tar.xz/download
-	if [ ! -f $SOURCES/$PKG.tar.xz ]; then
-		wget $URL -O $SOURCES/$PKG.tar.xz
+	URL=ftp://ftp.funet.fi/pub/unix/shells/zsh/$PKG.tar.gz
+	if [ ! -f $SOURCES/$PKG.tar.gz ]; then
+		echo "downloading zsh"
+		wget $URL -O $SOURCES/$PKG.tar.gz
 	fi
-	extract $PKG xz
+	extract $PKG gz
 	build $PKG
 	echo "$PKG done."
+}
+
+setup_network() {
+	cat > /etc/systemd/network/10-eth-dhcp.network << "EOF"
+[Match]
+Name=<network-device-name>
+
+[Network]
+DHCP=ipv4
+
+[DHCP]
+UseDomains=true
+EOF
+	ln -sfv /run/systemd/resolve/resolv.conf /etc/resolv.conf
+	echo "$LFS_USER" > /etc/hostname
+
+	cat > /etc/hosts << "EOF"
+# Begin /etc/hosts
+
+127.0.0.1 localhost
+127.0.1.1 <FQDN> <HOSTNAME>
+::1       localhost ip6-localhost ip6-loopback
+ff02::1   ip6-allnodes
+ff02::2   ip6-allrouters
+
+# End /etc/hosts
+EOF
 }
 
 echo "Hi from chroot"                                                    
@@ -1267,9 +1296,9 @@ echo "Hi from chroot"
 # dogit
 # dobin nettle-3.4 gz
 # dobin gnutls-3.6.2 xz "--with-included-libtasn1 --with-included-unistring --without-p11-kit"
-dobin wget-1.19 xz
+# dobin wget-1.19 xz
 # dowget
-dozsh
+# dozsh
 
 # cleaning
 #rm -rfv /tmp/*
