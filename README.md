@@ -1,7 +1,7 @@
 # The project
 this is a 42 school project, you can check the subjet here
 
-> https://cdn.intra.42.fr/pdf/pdf/758/ft_linux.pdf
+> https://cdn.intra.42.fr/pdf/pdf/758/ft_linux.en.pdf
 
 the global idea is to build a linux from scratch system by hand.
 
