@@ -38,7 +38,7 @@ get_sources() {
 	chmod -v a+wt sources
 	wget --input-file=wget-list --continue --directory-prefix=sources/
 	mkdir -pv $LFS/usr/src/sources
-	sudo mount -o bind sources $LFS/usr/src/sources
+	cp -rv sources/* $SOURCES/
 }
 
 # 4.2
