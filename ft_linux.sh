@@ -6,6 +6,7 @@ SOURCES=$LFS/usr/src/sources
 unpack() {
 	PKG=$1
 	FILE=$PKG.tar.$2
+	TARGET=$FILE
 	cd $SRCS
 	if [ ! -f $SOURCES/$FILE ]; then
 		echo "error: unable to find $FILE"
@@ -16,7 +17,16 @@ unpack() {
 		rm -r $PKG
 	fi
 	echo "Extracting $PKG"
-	tar -xf $SOURCES/$FILE
+	if [ $3 ]; then
+		TARGET=$SOURCES/$3
+	else
+		TARGET=$SOURCES/$FILE
+	fi
+	if [ -f $TARGET ]; then
+		echo "error: unable to find $TARGET"
+		exit 1
+	fi
+	tar -xf $TARGET
 	if [ ! -d $PKG ]; then
 		echo "failed to unpack source, check if $FILE exists"
 		exit 1
@@ -206,7 +216,7 @@ build_glibc() {
 	make install
 
 	# critical test ! do not skip ! i'm serious dude
-	echo 'int main(){}' > dummy.c
+	echo 'int main(){ return (0); }' > dummy.c
 	/tools/bin/$LFS_TGT-gcc dummy.c
 	if [ ! -f a.out ]; then
 		echo "[$PKG] failed to compile a.out, quit"
@@ -337,7 +347,7 @@ build_gcc_step2() {
 build_tclcore() {
 	PKG=tcl8.6.8
 	echo "making $PKG"
-	unpack $PKG gz
+	unpack $PKG gz $PKG-src.tar.gz
 	cd unix
 	./configure --prefix=/tools
 	compile $PKG
