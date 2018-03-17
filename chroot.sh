@@ -477,8 +477,8 @@ dobzip2() {
 
 dopkgconfig() {
 	PKG=pkg-config-0.29.2
-	export CFG="--with-internal-glib --disable-host-tool --docdir=/usr/share/doc/pkg-config-0.29.2"
-	dobin $PKG gz
+	dobin $PKG gz "--with-internal-glib --disable-host-tool --docdir=/usr/share/doc/pkg-config-0.29.2"
+
 }
 
 doncurses() {
