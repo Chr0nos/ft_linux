@@ -5,6 +5,8 @@ this is a 42 school project, you can check the subjet here
 
 the global idea is to build a linux from scratch system by hand.
 
+thoses scripts install "LFS-8.2 systemd"
+
 # Host system
 i do the tests on an arch linux 64 bits inside a virtual machine with 12Gb ram
 
@@ -51,5 +53,6 @@ first you need to edit config.sh (in the example upside i assume $LFS = /mnt)
 > sudo ./lfs.sh
 
 # End
-for now that's all, you will ne to finish the configuration by yourself,
-i'm still working on this project.t
+for now that's all, you will need to finish the configuration by yourself,
+i'm still working on this project. Feel free to open issue if you encouter problems/bugs.
+
