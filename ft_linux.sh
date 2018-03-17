@@ -8,31 +8,29 @@ unpack() {
 	FILE=$PKG.tar.$2
 	TARGET=$FILE
 	cd $SRCS
-	if [ ! -f $SOURCES/$FILE ]; then
-		echo "error: unable to find $FILE"
-		exit 1
-	fi
-	if [ -d $PKG ]; then
-		echo "Cleaning previous installation"
-		rm -r $PKG
-	fi
-	echo "Extracting $PKG"
-	if [ $3 ]; then
+	if [ -n "$3" ]; then
 		TARGET=$SOURCES/$3
 	else
 		TARGET=$SOURCES/$FILE
 	fi
-	if [ -f $TARGET ]; then
-		echo "error: unable to find $TARGET"
+
+	if [ ! -f $TARGET ]; then
+		echo "unpack error: unable to find $TARGET"
 		exit 1
 	fi
+
+	if [ -d $PKG ]; then
+		echo "unpack cleaning previous installation"
+		rm -r $PKG
+	fi
+	echo "Extracting $PKG"
 	tar -xf $TARGET
 	if [ ! -d $PKG ]; then
 		echo "failed to unpack source, check if $FILE exists"
 		exit 1
 	fi
 	cd $PKG
-	echo "Extraction ok"
+	echo "unpack of $PKG ok"
 }
 
 compile() {
@@ -50,12 +48,13 @@ build_generic() {
 	PKG=$1
 	echo "Building $PKG"
 	unpack $PKG $2
-	cd $PKG
-	echo "Configuring"
-	./configure --prefix=/tools $3
-	if [ $? != 0 ]; then
-		echo "Error: failed to configure $PKG"
-		exit 1
+	if [ -f configure ]; then
+		echo "Configuring $PKG from $(pwd)"
+		./configure --prefix=/tools $3
+		if [ $? != 0 ]; then
+			echo "Error: failed to configure $PKG"
+			exit 1
+		fi
 	fi
 	compile $PKG
 	echo "Installing"
