@@ -85,7 +85,7 @@ http://www.linuxfromscratch.org/patches/lfs/8.2/kbd-2.0.4-backspace-1.patch
 http://www.linuxfromscratch.org/patches/lfs/8.2/ninja-1.8.2-add_NINJAJOBS_var-1.patch
 http://www.linuxfromscratch.org/patches/lfs/8.2/sysvinit-2.88dsf-consolidated-1.patch
 https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.2.tar.xz
-https://ftp.gnu.org/gnu/wget/wget-1.19.tar.xz
+https://ftp.gnu.org/gnu/wget/wget-1.19.4.tar.gz
 https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.16.2.tar.xz
 ftp://ftp.funet.fi/pub/unix/shells/zsh/zsh-5.4.2.tar.gz
 https://ftp.osuosl.org/pub/blfs/conglomeration/gnutls/gnutls-3.6.2.tar.xz
