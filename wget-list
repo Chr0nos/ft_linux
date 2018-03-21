@@ -88,3 +88,5 @@ https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/gnutls-3.6.2.tar.xz
 https://ftp.gnu.org/gnu/wget/wget-1.19.tar.xz
 https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.16.2.tar.xz
 ftp://ftp.funet.fi/pub/unix/shells/zsh/zsh-5.4.2.tar.gz
+https://ftp.osuosl.org/pub/blfs/conglomeration/gnutls/gnutls-3.6.2.tar.xz
+ftp://gtp.gnu.org/gnu/nettle/nettle-3.4.tar.gz
