@@ -1172,7 +1172,7 @@ dogit() {
 		wget $URL -O $SOURCES/$PKG.tar.xz
 	fi
 	extract $PKG xz
-	./configure --prefix=/usr
+	./configure --prefix=/usr --with-expat
 	compile $PKG
 	make install
 	echo "$PKG done."
