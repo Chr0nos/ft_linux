@@ -73,7 +73,7 @@ pull() {
 	VERSION=$3
 	FILE=$PKG-$VERSION.tar.$EXT
 	if [ -f $SOURCES/$FILE ]; then
-		echo "$PKG source alredy here."
+		echo "$PKG source already here."
 		return
 	fi
 	URL=$4
