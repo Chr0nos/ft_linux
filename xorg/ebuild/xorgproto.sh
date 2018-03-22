@@ -1,5 +1,3 @@
-source $EBUILDS/xorg.sh
-
 build() {
 	PKG=xorgproto
 	VERSION=2018.4

@@ -3,11 +3,18 @@ the very begining of my own package manager,
 for now it dosent support dependencies and the packages have to been installed
 in the right order.
 
-# usage
-> source pkg.sh
+# dependencies
+you need to have wget installed
 
-> buikd_pkg [package name]
+# usage
+> zsh pkg.sh <package to install>
 
 # packages
 the builds scripts are in ebuild directory
 
+# install xorg ?
+yes, this is the main purpose of this script, just do:
+
+> zsh pkg.sh xorg-install
+
+this is a meta package with the good order of dependencies.

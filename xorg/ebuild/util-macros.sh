@@ -1,5 +1,3 @@
-source $EBUILDS/xorg.sh
-
 build() {
 	PKG=util-macros
 	VERSION=1.19.2

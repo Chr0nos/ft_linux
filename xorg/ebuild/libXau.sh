@@ -1,5 +1,3 @@
-source $EBUILDS/xorg.sh
-
 build() {
 	PKG=libXau
 	VERSION=1.0.8

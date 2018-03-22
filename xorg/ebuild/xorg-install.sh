@@ -6,4 +6,5 @@ build() {
 	build_pkg xcb-proto
 	build_pkg libxcb
 	build_pkg xcb-util
+	build_pkg xcb-util-image
 }

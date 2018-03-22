@@ -1,5 +1,3 @@
-source $EBUILDS/xorg.sh
-
 build() {
 	PKG=xcb-proto
 	VERSION=1.13

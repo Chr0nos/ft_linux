@@ -1,5 +1,3 @@
-source $EBUILDS/xorg.sh
-
 build() {
 	PKG=libxcb
 	VERSION=1.13

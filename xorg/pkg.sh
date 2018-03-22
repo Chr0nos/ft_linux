@@ -2,6 +2,8 @@ export SOURCES=/dev/shm
 export SRCS=/tmp
 export EBUILDS=./ebuild
 export ROOT=$(pwd)
+export XORG_PREFIX=/usr
+export XORG_CONFIG=--prefix=$XORG_PREFIX --sysconfdir=/etc --localstatedir=/var --disable-static
 
 unpack() {
 	PKG=$1
