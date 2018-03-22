@@ -75,6 +75,7 @@ pull() {
 		return
 	fi
 	URL=$4
+	echo "getting $PKG from $URL"
 	wget $URL -O $SOURCES/$FILE --no-check-certificate
 	if [ $? != 0 ]; then
 		echo "error: failed to get $PKG at $URL"
@@ -95,3 +96,5 @@ build_pkg() {
 	build
 	echo "$PKG done."
 }
+
+build_pkg $@
