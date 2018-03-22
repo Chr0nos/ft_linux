@@ -75,7 +75,7 @@ pull() {
 		return
 	fi
 	URL=$4
-	wget $URL -O $SOURCES/$FILE
+	wget $URL -O $SOURCES/$FILE --no-check-certificate
 	if [ $? != 0 ]; then
 		echo "error: failed to get $PKG at $URL"
 		exit 1
