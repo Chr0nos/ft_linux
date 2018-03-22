@@ -4,7 +4,7 @@ build() {
 	URL=https://www.x.org/pub/individual/util/$PKG-$VERSION.tar.bz2
 	pull $PKG bz2 $VERSION $URL
 	unpack $PKG-$VERSION bz2
-	./configure --prefix=/usr
+	./configure --prefix=$XORG_PREFIX
 	compile $PKG
 	make install
 }
