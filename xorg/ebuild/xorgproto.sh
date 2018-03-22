@@ -16,5 +16,4 @@ build() {
 	ninja install
 	install -vdm 755 $XORG_PREFIX/share/doc/$PKG-$VERSION &&
 	install -vm 644 ../[^m]*.txt ../PM_spec $XORG_PREFIX/share/doc/$PKG-$VERSION
-	echo "$PKG done."
 }

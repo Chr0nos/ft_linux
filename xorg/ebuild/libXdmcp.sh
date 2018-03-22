@@ -9,5 +9,4 @@ build() {
 	./configure $XORG_CONFIG
 	compile $PKG-$VERSION
 	make install
-	echo "$PKG done."
 }
