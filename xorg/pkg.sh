@@ -1,6 +1,7 @@
 export SOURCES=/dev/shm
 export SRCS=/tmp
 export EBUILDS=./ebuild
+export ROOT=$(pwd)
 
 unpack() {
 	PKG=$1
@@ -85,6 +86,7 @@ pull() {
 build_pkg() {
 	PKG=$1
 	FILE=$EBUILDS/$PKG.sh
+	cd $ROOT
 	if [ ! -f $FILE ]; then
 		echo "no such package $PKG"
 		return 1
