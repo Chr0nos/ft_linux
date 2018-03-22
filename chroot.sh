@@ -1172,7 +1172,7 @@ dogit() {
 		wget $URL -O $SOURCES/$PKG.tar.xz
 	fi
 	extract $PKG xz
-	./configure --prefix=/usr --with-expat
+	./configure --prefix=/usr --with-expat --with-curl
 	compile $PKG
 	make install
 	echo "$PKG done."
@@ -1293,6 +1293,7 @@ echo "Hi from chroot"
 # dovim
 
 # custon packages
+# dobin curl-7.60.0-20180321 xz
 # dogit
 # dobin nettle-3.4 gz
 # dobin gnutls-3.6.2 xz "--with-included-libtasn1 --with-included-unistring --without-p11-kit"
