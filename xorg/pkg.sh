@@ -43,7 +43,7 @@ compile() {
 	fi
 }
 
-# usage : build_generic PKG SOURCEFILE <options to configure> 
+# usage : build_generic PKG SOURCEFILE <options to configure>
 build_generic() {
 	PKG=$1
 	echo "Building $PKG"
@@ -94,5 +94,8 @@ build_pkg() {
 }
 
 build_xorg() {
-	build_pkg util-macros	
+	build_pkg util-macros
+	build_pkg xorgproto
+	build_pkg libXau
+	build_pkg libXdmcp
 }
