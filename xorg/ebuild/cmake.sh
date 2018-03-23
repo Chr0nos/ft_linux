@@ -1,4 +1,4 @@
-# depends: libuv
+# depends: libuv, libarchive
 
 build() {
 	PKG="cmake"
@@ -15,5 +15,10 @@ build() {
 				--no-system-librhash \
 				--docdir=/share/doc/$PKG-$VERSION &&
 	compile $PKG-$VERSION
-	make install
+	if [ $? == 0 ]; then
+		make install
+	else
+		echo "configuration failed for $PKG-$VERSION"
+		exit 1
+	fi
 }

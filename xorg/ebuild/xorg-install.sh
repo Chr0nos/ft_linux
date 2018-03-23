@@ -19,6 +19,7 @@ build() {
 	build_pkg MarkupSafe
 	build_pkg Mako
 	build_pkg libuv
+	build_pkg libarchive
 	build_pkg cmake
 	build_pkg llvm
 	build_pkg mesa
