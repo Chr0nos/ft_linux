@@ -4,7 +4,11 @@ build() {
 	URL="https://downloads.sourceforge.net/libpng/libpng-1.6.34.tar.xz"
 	PATCH="libpng-$VERSION-apng.patch.gz"
 	pull $PKG xz $VERSION $URL
-	pull libpng-patch gz https://downloads.sourceforge.net/sourceforge/libpng-apng/$PATCH
+	wget https://downloads.sourceforge.net/sourceforge/libpng-apng/$PATCH --no-check-certificate
+	if [ $? != 0 ]; then
+		echo "error: failed to get patch $PATCH for $PKG-$VERSION"
+		exit 1
+	fi
 	gzip -cd $PATCH | patch -p1
 	LIBS=-lpthread ./configure --prefix=/usr --disable-static &&
 	compile $PKG-$VERSION
