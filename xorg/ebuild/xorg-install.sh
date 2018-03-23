@@ -7,4 +7,10 @@ build() {
 	build_pkg libxcb
 	build_pkg xcb-util
 	build_pkg xcb-util-image
+	build_pkg xcb-util-keysym
+	build_pkg xcb-util-renderutil
+	build_pkg xcb-util-wm
+	build_pkg freetype
+	build_pkg fontconfig
+	# build_pkg mesa
 }

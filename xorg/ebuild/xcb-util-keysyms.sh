@@ -1,0 +1,10 @@
+build() {
+	PKG=xcb-util-keysyms
+	VERSION=0.4.0
+	URL=https://xcb.freedesktop.org/dist/$PKG-$VERSION.tar.bz2
+	pull $PKG bz2 $VERSION $URL
+	unpack $PKG-$VERSION bz2
+	./configure $XORG_CONFIG
+	compile $PKG-$VERSION
+	make install
+}
