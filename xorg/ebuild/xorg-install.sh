@@ -12,5 +12,11 @@ build() {
 	build_pkg xcb-util-wm
 	build_pkg freetype
 	build_pkg fontconfig
-	# build_pkg mesa
+	build_pkg xorg-libs
+	build_pkg libdrm
+	build_pkg Python
+	build_pkg Beaker
+	build_pkg MarkupSafe
+	build_pkg Mako
+	build_pkg mesa
 }
