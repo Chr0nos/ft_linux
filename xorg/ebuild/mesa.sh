@@ -10,8 +10,8 @@ build() {
 	URL="https://mesa.freedesktop.org/archive/$PKG-$VERSION.tar.xz"
 	pull $PKG xz $VERSION $URL
 	unpack $PKG-$VERSION xz
-	GLL_DRV="i915,r600,nouveau,radeonsi,svga,swrast"
-	./configure CFLAGS='-O2' CXXFLAGS='-O2' LDFLAGS=-lLLVM \
+	GLL_DRV="i915,r600,nouveau,svga,swrast"
+	./autogen.sh CFLAGS='-O2' CXXFLAGS='-O2' LDFLAGS=-lLLVM \
 			--prefix=$XORG_PREFIX              \
 			--sysconfdir=/etc                  \
 			--enable-texture-float             \
