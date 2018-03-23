@@ -6,7 +6,7 @@ build() {
 	unpack $PKG-$VERSION gz
 	python setup.py build
 	python setup.py install --optimize=1
-	if [ -l /usr/bin/python3 ]; then
+	if [ -l "/usr/bin/python3" ]; then
 		python3 setup.py build
 		python3 setup.py install --optimize=1
 	fi
