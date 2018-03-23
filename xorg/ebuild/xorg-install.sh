@@ -18,6 +18,8 @@ build() {
 	build_pkg Beaker
 	build_pkg MarkupSafe
 	build_pkg Mako
+	build_pkg libuv
+	build_pkg cmake
 	build_pkg llvm
 	build_pkg mesa
 }

@@ -1,6 +1,6 @@
 add_clang() {
 	pull clang xz 5.0.1 http://llvm.org/releases/5.0.1/cfe-5.0.1.src.tar.xz
-	tar -xf $SOURCES/cfe-5.0.1.tar.xz -C tools
+	tar -xf $SOURCES/clang-5.0.1.tar.xz -C tools
 	mv tools/cfe-5.0.1.src tools/clang
 }
 
@@ -9,7 +9,7 @@ build() {
 	VERSION="5.0.1"
 	URL="http://llvm.org/releases/$VERSION/$PKG-$VERSION.src.tar.xz"
 	pull $PKG xz $VERSION $URL
-	unpack $PKG-$VERSION xz
+	unpack $PKG-$VERSION.src xz $PKG-$VERSION.tar.xz
 	add_clang
 	mkdir -v build
 	cd build
