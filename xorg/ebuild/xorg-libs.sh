@@ -9,13 +9,13 @@ subbuild() {
 	unpack $PKG-$VERSION bz2
 	case $PKG in
 		libICE*)
-			./configure $XORG_CONFIG ICE_LIBS= lpthread
+			./configure $XORG_CONFIG ICE_LIBS=-lpthread
 		;;
 		libXfont)
-			./configure $XORG_CONFIG   disable devel docs
+			./configure $XORG_CONFIG --disable-devel-docs
 		;;
 		libXt)
-			./configure $XORG_CONFIG   with appdefaultdir=/etc/X11/app defaults
+			./configure $XORG_CONFIG --with appdefaultdir=/etc/X11/app defaults
 		;;
 		*)
 			./configure $XORG_CONFIG
