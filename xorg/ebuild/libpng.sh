@@ -17,4 +17,5 @@ build() {
 	make install
 	mkdir -v /usr/share/doc/$PKG-$VERSION &&
 	cp -v README libpng-manual.txt /usr/share/doc/$PKG-$VERSION
+	cleanup $PKG $VERSION
 }

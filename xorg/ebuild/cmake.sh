@@ -21,4 +21,5 @@ build() {
 		echo "configuration failed for $PKG-$VERSION"
 		exit 1
 	fi
+	cleanup $PKG $VERSION
 }

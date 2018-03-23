@@ -8,4 +8,5 @@ build() {
 	./configure $XORG_CONFIG --docdir=/usr/share/doc/$PKG-$VERSION
 	compile $PKG-$VERSION
 	make install
+	cleanup $PKG $VERSION
 }

@@ -86,6 +86,15 @@ pull() {
 	echo "Successfully retrived $PKG-$VERSION"
 }
 
+cleanup() {
+	PKG=$1
+	VERSION=$2
+	if [ -d $SRCS/$PKG-$VERSION ]; then
+		echo "cleaning traces of $PKG-$VERSION"
+		rm -rf $SRCS/$PKG-$VERSION
+	fi
+}
+
 build_pkg() {
 	PKG=$1
 	FILE=$EBUILDS/$PKG.sh
@@ -96,14 +105,6 @@ build_pkg() {
 	fi
 	source $FILE
 	build
-	if [ $PKG == "linux" ]; then
-		echo "keepping $PKG build dir"
-	else
-		if [ -d $SRCS/$PKG ]; then
-			echo "cleaning $PKG build dir."
-			rm -rf $SRCS/$PKG
-		fi
-	fi
 	echo "$PKG done."
 }
 

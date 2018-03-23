@@ -10,4 +10,5 @@ build() {
 	./configure --prefix=$XORG_PREFIX --disable-static
 	compile $PKG-$VERSION
 	make install
+	cleanup $PKG $VERSION
 }

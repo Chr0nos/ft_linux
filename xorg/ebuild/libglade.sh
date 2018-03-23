@@ -7,4 +7,5 @@ build() {
 	sed -i '/DG_DISABLE_DEPRECATED/d' glade/Makefile.in &&
 	./configure --prefix=/usr --disable-static &&
 		compile $PKG-$VERSION
+	cleanup $PKG $VERSION
 }

@@ -16,9 +16,7 @@ subbuild() {
 		echo "errror: failed to build/configure/install $PKG-$VERSION"
 		exit 1
 	fi
-	echo "cleaning up $PKG"
-	cd $SRCS
-	rm -f $SRCS/$PKG-$VERSION
+	cleanup $PKG $VERSION
 }
 
 build() {

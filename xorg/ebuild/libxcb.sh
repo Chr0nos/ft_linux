@@ -10,4 +10,5 @@ build() {
 				--docdir='${datadir}'/doc/$PKG-$VERSION
 	compile $PKG-$VERSION
 	make install
+	cleanup $PKG $VERSION
 }

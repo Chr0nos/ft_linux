@@ -11,4 +11,5 @@ build() {
 		echo "$PKG-$VERSION bas failed to buikd/install"
 		exit 1
 	fi
+	cleanup $PKG $VERSION
 }

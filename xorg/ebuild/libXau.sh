@@ -7,4 +7,5 @@ build() {
 	./configure $XORG_CONFIG
 	compile $PKG-$VERSION
 	make install
+	cleanup $PKG $VERSION
 }

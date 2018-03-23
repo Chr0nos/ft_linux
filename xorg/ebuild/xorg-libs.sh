@@ -23,6 +23,7 @@ subbuild() {
 	esac
 	compile $PKG-$VERSION
 	make install
+	cleanup $PKG $VERSION
 	echo "$PKG done."
 }
 

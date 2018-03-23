@@ -26,4 +26,5 @@ build() {
 	install -v -m644 tools/clang/docs/man/* /usr/share/man/man1
 	install -v -d -m755 /usr/share/doc/llvm-5.0.1/clang-html
 	cp -Rv tools/clang/docs/html/* /usr/share/doc/llvm-5.0.1/clang-html
+	cleanup $PKG $VERSION
 }

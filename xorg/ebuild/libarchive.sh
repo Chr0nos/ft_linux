@@ -6,4 +6,5 @@ build() {
 	unpack $PKG-$VERSION gz
 	./configure --prefix=/usr --disable-static && compile $PKG-$VERSION
 	make install
+	cleanup $PKG $VERSION
 }

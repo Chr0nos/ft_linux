@@ -8,4 +8,5 @@ build() {
 	if [ -l /usr/bin/python3 ]; then
 		python3 setup.py install --optimize=1
 	fi
+	cleanup $PKG $VERSION
 }
