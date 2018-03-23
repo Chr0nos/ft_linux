@@ -28,4 +28,7 @@ build() {
 	build_pkg xorg-apps
 	build_pkg xcursor-themes
 	build_pkg xorg-fonts
+	build_pkg xkeyboard-config
+	build_pkg pixman
+	build_pkg xorg-server
 }
