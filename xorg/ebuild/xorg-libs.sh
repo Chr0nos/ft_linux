@@ -6,7 +6,7 @@ subbuild() {
 	URL="$3/$PKG-$VERSION.tar.bz2"
 	echo "building $PKG-$VERSION"
 	pull $PKG bz2 $VERSION $URL
-	unpack $PKG $VERSION
+	unpack $PKG-$VERSION bz2
 	case $PKG in
 		libICE*)
 			./configure $XORG_CONFIG ICE_LIBS= lpthread
