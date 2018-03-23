@@ -23,4 +23,7 @@ build() {
 	build_pkg cmake
 	build_pkg llvm
 	build_pkg mesa
+	build_pkg xbitmaps
+	build_pkg libpng
+
 }
