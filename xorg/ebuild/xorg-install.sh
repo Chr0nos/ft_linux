@@ -30,5 +30,6 @@ build() {
 	build_pkg xorg-fonts
 	build_pkg xkeyboard-config
 	build_pkg pixman
+	build_pkg libepoxy
 	build_pkg xorg-server
 }
