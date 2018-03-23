@@ -18,7 +18,10 @@ build() {
 		--disable-multilib       \
 		--disable-bootstrap      \
 		--with-system-zlib
-
+	if [ $? != 0 ]; then
+		echo "error: failed to configure $PKG-$VERSION"
+		exit 1
+	fi
 	compile $PKG-$VERSION 2
 	ulimit -s 32768
 	make -k check
@@ -33,7 +36,7 @@ build() {
 	install -v -dm755 /usr/lib/bfd-plugins
 	ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/$VERSION/liblto_plugin.so \
 		/usr/lib/bfd-plugins/
-	echo 'int main(){}' > dummy.c
+	echo 'int main(){ return (0); }' > dummy.c
 	cc dummy.c -v -Wl,--verbose &> dummy.log
 	if [ $? != 0 ]; then
 		echo "error: $PKG cannot create binaries"
