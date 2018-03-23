@@ -32,7 +32,7 @@ build() {
 	subbuild setxkbmap 1.3.1 bz2 $ROOTURL
 	subbuild smproxy 1.0.6 bz2 $ROOTURL
 	subbuild x11perf 1.6.0 bz2 $ROOTURL
-	subbuild xauth- .0.10 bz2 $ROOTURL
+	subbuild xauth 1.0.10 bz2 $ROOTURL
 	subbuild xbacklight 1.2.2 bz2 $ROOTURL
 	subbuild xcmsdb 1.0.5 bz2 $ROOTURL
 	subbuild xcursorgen 1.0.6 bz2 $ROOTURL
