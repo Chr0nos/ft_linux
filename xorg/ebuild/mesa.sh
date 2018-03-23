@@ -5,9 +5,9 @@
 # marko
 
 build() {
-	PKG=mesa
-	VERSION=17.3.5
-	URL=https://mesa.freedesktop.org/archive/$PKG-$VERSION.tar.xz
+	PKG="mesa"
+	VERSION="18.0.0-rc5"
+	URL="https://mesa.freedesktop.org/archive/$PKG-$VERSION.tar.xz"
 	pull $PKG xz $VERSION $URL
 	unpack $PKG-$VERSION xz
 	GLL_DRV="i915,r600,nouveau,radeonsi,svga,swrast"
