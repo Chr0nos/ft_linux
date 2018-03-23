@@ -1,3 +1,5 @@
+# ftp://ftp.uvsq.fr/pub/gcc/snapshots/8-20180318/gcc-8-20180318.tar.xz
+
 build() {
 	PKG="gcc"
 	VERSION="7.3.0"
