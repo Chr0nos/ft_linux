@@ -4,7 +4,7 @@ build() {
 	URL="https://downloads.sourceforge.net/libpng/libpng-1.6.34.tar.xz"
 	PATCH="libpng-$VERSION-apng.patch.gz"
 	pull $PKG xz $VERSION $URL
-	unpack $PKG-$VERSION gz
+	unpack $PKG-$VERSION xz
 	wget https://downloads.sourceforge.net/sourceforge/libpng-apng/$PATCH \
 		--no-check-certificate
 	if [ $? != 0 ]; then
