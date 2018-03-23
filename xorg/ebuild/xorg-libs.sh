@@ -15,7 +15,7 @@ subbuild() {
 			./configure $XORG_CONFIG --disable-devel-docs
 		;;
 		libXt)
-			./configure $XORG_CONFIG --with appdefaultdir=/etc/X11/app defaults
+			./configure $XORG_CONFIG --with appdefaultdir=/etc/X11/app-defaults
 		;;
 		*)
 			./configure $XORG_CONFIG
