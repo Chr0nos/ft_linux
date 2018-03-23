@@ -32,4 +32,5 @@ build() {
 	build_pkg pixman
 	build_pkg libepoxy
 	build_pkg xorg-server
+	build_pkg libxml2
 }

@@ -96,6 +96,14 @@ build_pkg() {
 	fi
 	source $FILE
 	build
+	if [ $PKG == "linux" ]; then
+		echo "keepping $PKG build dir"
+	else
+		if [ -d $SRCS/$PKG ]; then
+			echo "cleaning $PKG build dir."
+			rm -rf $SRCS/$PKG
+		fi
+	fi
 	echo "$PKG done."
 }
 
