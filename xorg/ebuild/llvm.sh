@@ -20,7 +20,7 @@ build() {
 			-DLLVM_BUILD_LLVM_DYLIB=ON            \
 			-DLLVM_TARGETS_TO_BUILD="host;AMDGPU" \
 			-Wno-dev ..
-	compile $PKG-$VERSION
+	compile $PKG-$VERSION 2
 	make install
 	# clang documentation
 	install -v -m644 tools/clang/docs/man/* /usr/share/man/man1

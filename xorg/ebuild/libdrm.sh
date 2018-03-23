@@ -6,5 +6,9 @@ build() {
 	unpack $PKG-$VERSION bz2
 	mkdir -v build
 	cd build
-	meson --prefix=$XORG_PREFIX -Dudev=true && ninja && ninja-install
+	meson --prefix=$XORG_PREFIX -Dudev=true && ninja && ninja install
+	if [ $? != 0 ]; then
+		echo "$PKG-$VERSION bas failed to buikd/install"
+		exit 1
+	fi
 }
