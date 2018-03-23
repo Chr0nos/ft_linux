@@ -21,7 +21,7 @@ subbuild() {
 			./configure $XORG_CONFIG
 		;;
 	esac
-	compile $PKG $VERSION
+	compile $PKG-$VERSION
 	make install
 	echo "$PKG done."
 }
