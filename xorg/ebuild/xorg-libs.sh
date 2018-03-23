@@ -1,10 +1,10 @@
 # http://fr.linuxfromscratch.org/view/blfs systemd svn/x/x7lib.html
 
 subbuild() {
-	PKG=$1
-	VERSION=$2
-	URL=$3/$PKG $VERSION.tar.bz2
-	echo "building $PKG $VERSION"
+	PKG="$1"
+	VERSION="$2"
+	URL="$3/$PKG $VERSION.tar.bz2"
+	echo "building $PKG-$VERSION"
 	pull $PKG bz2 $VERSION $URL
 	unpack $PKG $VERSION
 	case $PKG in
@@ -27,9 +27,9 @@ subbuild() {
 }
 
 build() {
-	PKG=xorg-libs
-	VERSION=1.0
-	ROOTURL=https://www.x.org/archive//individual/lib/
+	PKG="xorg-libs"
+	VERSION="1.0"
+	ROOTURL="https://www.x.org/archive//individual/lib/"
 	subbuild xtrans 1.3.5 $ROOTURL
 	subbuild libX11 1.6.5 $ROOTURL
 	subbuild libXext 1.3.3 $ROOTURL
