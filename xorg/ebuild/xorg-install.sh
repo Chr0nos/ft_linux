@@ -25,5 +25,7 @@ build() {
 	build_pkg mesa
 	build_pkg xbitmaps
 	build_pkg libpng
-
+	build_pkg xorg-apps
+	build_pkg xcursor-themes
+	build_pkg xorg-fonts
 }
