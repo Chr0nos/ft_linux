@@ -44,5 +44,7 @@ build() {
 	build_pkg nasm
 	build_pkg yasm
 	build_pkg libjpeg-turbo
-
+	build_pkg shared-mime-info
+	build_pkg gdk-pixbuf
+	build_pkg icu
 }
