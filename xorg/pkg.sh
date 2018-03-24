@@ -48,7 +48,7 @@ compile() {
 
 # usage : build_generic PKG SOURCEFILE <options to configure>
 build_generic() {
-	PKG=$1
+	PKG="$1"
 	echo "Building $PKG"
 	unpack $PKG $2
 	if [ -f configure ]; then
@@ -68,15 +68,15 @@ build_generic() {
 
 # usge: pull [PKG] [EXT] [VERSION] [URL]
 pull() {
-	PKG=$1
-	EXT=$2
-	VERSION=$3
-	FILE=$PKG-$VERSION.tar.$EXT
+	PKG="$1"
+	EXT="$2"
+	VERSION="$3"
+	FILE="$PKG-$VERSION.tar.$EXT"
 	if [ -f $SOURCES/$FILE ]; then
 		echo "$PKG source already here."
 		return
 	fi
-	URL=$4
+	URL="$4"
 	echo "getting $PKG from $URL"
 	wget $URL -O $SOURCES/$FILE --no-check-certificate
 	if [ $? != 0 ]; then
@@ -87,8 +87,8 @@ pull() {
 }
 
 cleanup() {
-	PKG=$1
-	VERSION=$2
+	PKG="$1"
+	VERSION="$2"
 	if [ -d $SRCS/$PKG-$VERSION ]; then
 		echo "cleaning traces of $PKG-$VERSION"
 		rm -rf $SRCS/$PKG-$VERSION
