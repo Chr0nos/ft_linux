@@ -41,5 +41,8 @@ build() {
 	build_pkg libevdev
 	build_pkg mtdev
 	build_pkg xf86-input-evdev
+	build_pkg nasm
+	build_pkg yasm
+	build_pkg libjpeg-turbo
 
 }
