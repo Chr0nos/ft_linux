@@ -87,8 +87,6 @@ pull() {
 }
 
 cleanup() {
-	PKG="$1"
-	VERSION="$2"
 	if [ -d $SRCS/$PKG-$VERSION ]; then
 		echo "cleaning traces of $PKG-$VERSION"
 		rm -rf $SRCS/$PKG-$VERSION
@@ -98,8 +96,8 @@ cleanup() {
 }
 
 build_pkg() {
-	PKG=$1
-	FILE=$EBUILDS/$PKG.sh
+	PKG="$1"
+	FILE="$EBUILDS/$PKG.sh"
 	cd $ROOT
 	if [ ! -f $FILE ]; then
 		echo "no such package $PKG"

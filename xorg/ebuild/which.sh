@@ -5,5 +5,5 @@ build() {
 	pull $PKG gz $VERSION $URL
 	unpack $PKG-$VERSION gz
 	./configure --prefix=/usr && compile $PKG-$VERSION $$ make install
-	cleanup $PKG $VERSION
+	cleanup
 }
