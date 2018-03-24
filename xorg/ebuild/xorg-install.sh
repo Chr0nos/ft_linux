@@ -33,4 +33,9 @@ build() {
 	build_pkg libepoxy
 	build_pkg xorg-server
 	build_pkg libxml2
+	build_pkg pcre
+	build_pkg which
+	build_pkg gobject-introspection
+	build_pkg glib
+	build_pkg atk
 }

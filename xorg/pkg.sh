@@ -92,6 +92,8 @@ cleanup() {
 	if [ -d $SRCS/$PKG-$VERSION ]; then
 		echo "cleaning traces of $PKG-$VERSION"
 		rm -rf $SRCS/$PKG-$VERSION
+	else
+		echo "nothing to clean for $PKG-$VERSION"
 	fi
 }
 

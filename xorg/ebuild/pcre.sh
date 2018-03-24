@@ -14,5 +14,6 @@ build() {
 				--enable-pcretest-libreadline         \
 				--disable-static
 	compile $PKG-$VERSION
+	make install
 	cleanup $PKG $VERSION
 }

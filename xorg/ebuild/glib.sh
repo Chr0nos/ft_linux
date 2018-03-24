@@ -8,5 +8,6 @@ build() {
 				--with-pcre=system \
 				--with-python=/usr/bin/python3 &&
 		compile $PKG-$VERSION
+	make install
 	cleanup $PKG $VERSION
 }
