@@ -37,11 +37,10 @@ unpack() {
 
 # usage: compile [PKG] <threads to use>
 compile() {
-	PKG=$1
-	echo "Compiling $PKG"
+	echo "Compiling $PKG-$VERSION"
 	make -j$2
 	if [ $? != 0 ]; then
-		echo "compilation failed for $PKG"
+		echo "compilation failed for $PKG-$VERSION"
 		exit 1
 	fi
 }
