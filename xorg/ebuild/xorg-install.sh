@@ -38,4 +38,8 @@ build() {
 	build_pkg gobject-introspection
 	build_pkg glib
 	build_pkg atk
+	build_pkg libevdev
+	build_pkg mtdev
+	build_pkg xf86-input-evdev
+
 }
