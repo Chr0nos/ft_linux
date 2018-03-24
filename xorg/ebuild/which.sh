@@ -3,6 +3,6 @@ build() {
 	URL="https://ftp.gnu.org/gnu/$PKG/$PKG-$VERSION.tar.gz"
 	pull $PKG gz $VERSION $URL
 	unpack $PKG-$VERSION gz
-	./configure --prefix=/usr && compile $PKG-$VERSION $$ make install
+	./configure --prefix=/usr && compile $PKG-$VERSION && make install
 	cleanup
 }
