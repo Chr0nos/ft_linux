@@ -6,8 +6,8 @@ export XORG_PREFIX="/usr"
 export XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc --localstatedir=/var --disable-static"
 
 unpack() {
-	PKG=$1
-	FILE=$PKG.tar.$2
+	UNPACK_PKG="$1"
+	FILE=$UNPACK_PKG.tar.$2
 	TARGET=$FILE
 	cd $SRCS
 	if [ -n "$3" ]; then
@@ -21,18 +21,18 @@ unpack() {
 		exit 1
 	fi
 
-	if [ -d $PKG ]; then
+	if [ -d $UNPACK_PKG ]; then
 		echo "unpack cleaning previous installation"
-		rm -r $PKG
+		rm -r $UNPACK_PKG
 	fi
-	echo "Extracting $PKG"
+	echo "Extracting $UNPACK_PKG"
 	tar -xf $TARGET
-	if [ ! -d $PKG ]; then
+	if [ ! -d $UNPACK_PKG ]; then
 		echo "failed to unpack source, check if $FILE exists"
 		exit 1
 	fi
-	cd $PKG
-	echo "unpack of $PKG ok"
+	cd $UNPACK_PKG
+	echo "unpack of $UNPACK_PKG ok"
 }
 
 # usage: compile [PKG] <threads to use>
