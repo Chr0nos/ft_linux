@@ -67,22 +67,21 @@ build_generic() {
 
 # usge: pull [PKG] [EXT] [VERSION] [URL]
 pull() {
-	PKG="$1"
+	PULLPKG="$1"
 	EXT="$2"
-	VERSION="$3"
-	FILE="$PKG-$VERSION.tar.$EXT"
+	FILE="$PULLPKG-$3.tar.$EXT"
 	if [ -f $SOURCES/$FILE ]; then
-		echo "$PKG source already here."
+		echo "$PULLPKG source already here."
 		return
 	fi
 	URL="$4"
-	echo "getting $PKG from $URL"
+	echo "getting $PULLPKG from $URL"
 	wget $URL -O $SOURCES/$FILE --no-check-certificate
 	if [ $? != 0 ]; then
-		echo "error: failed to get $PKG at $URL"
+		echo "error: failed to get $PULLPKG at $URL"
 		exit 1
 	fi
-	echo "Successfully retrived $PKG-$VERSION"
+	echo "Successfully retrived $PULLPKG-$VERSION"
 }
 
 cleanup() {
