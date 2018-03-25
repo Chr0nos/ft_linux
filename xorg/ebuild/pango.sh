@@ -5,6 +5,6 @@ build() {
 	unpack $PKG-$VERSION xz
 	mkdir build &&
 	cd    build &&
-	meson --prefix=/usr --sysconfdir=/etc .. &&	ninja && ninja-install
-	cleanup
+	meson --prefix=/usr --sysconfdir=/etc .. &&	ninja && ninja install &&
+		cleanup
 }
