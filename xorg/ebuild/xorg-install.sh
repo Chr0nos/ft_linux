@@ -60,4 +60,6 @@ build() {
 	build_pkg pangomm
 	build_pkg xf86-video-vesa
 	build_pkg xinit
+	build_pkg xclock
+	build_pkg xterm
 }
