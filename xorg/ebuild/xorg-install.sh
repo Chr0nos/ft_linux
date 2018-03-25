@@ -48,7 +48,8 @@ build() {
 	build_pkg shared-mime-info
 	build_pkg libtiff
 	build_pkg gdk-pixbuf
-	buikd_pkg cairo
+	build_pkg cairo
+	build_pkg pango
 	build_pkg icu
 	build_pkg gtk+
 }

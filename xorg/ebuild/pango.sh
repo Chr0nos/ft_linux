@@ -1,6 +1,6 @@
 build() {
-	VERSION="1.40.14"
-	URL="http://ftp.gnome.org/pub/gnome/sources/pango/1.40/pango-$VERSION.tar.xz"
+	VERSION="1.42.0"
+	URL="http://ftp.gnome.org/pub/gnome/sources/pango/1.42/pango-$VERSION.tar.xz"
 	pull $PKG xz $VERSION $URL
 	unpack $PKG-$VERSION xz
 	mkdir build &&
