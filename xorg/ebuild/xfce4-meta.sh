@@ -15,4 +15,8 @@ build() {
 	build_pkg at-spi2-core
 	build_pkg at-spi2-atk
 	build_pkg gtk3
+	build_pkg Thunar
+	build_pkg xfdesktop
+	build_pkg xfwm4
+	build_pkg xfce4-session
 }
