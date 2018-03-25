@@ -54,8 +54,8 @@ build() {
 	build_pkg pango
 	build_pkg gtk+
 	build_pkg icu
-	build_pkg glibmm
 	build_pkg libsigc++
+	build_pkg glibmm
 	build_pkg cairomm
 	build_pkg pangomm
 }
