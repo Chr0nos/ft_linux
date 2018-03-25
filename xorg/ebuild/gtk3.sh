@@ -6,7 +6,7 @@ build() {
 	./configure --prefix=/usr             \
 				--sysconfdir=/etc         \
 				--enable-broadway-backend \
-				--enable-x11-backend      \
+				--enable-x11-backend
 		compile $PKG-$VERSION && make install
 	if [ $? == 0]; then
 		gtk-query-immodules-3.0 --update-cache
