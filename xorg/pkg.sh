@@ -84,6 +84,11 @@ pull() {
 	echo "Successfully retrived $PULLPKG-$VERSION"
 }
 
+# usage: prepair <PKG> <VERSION> <EXT> <URL>
+prepair() {
+	pull $1 $3 $2 $4 && unpack $1-$2 $3
+}
+
 cleanup() {
 	if [ -d $SRCS/$PKG-$VERSION ]; then
 		echo "cleaning traces of $PKG-$VERSION"
