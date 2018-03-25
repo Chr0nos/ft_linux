@@ -12,4 +12,7 @@ build() {
 	build_pkg hicolor-icon-theme
 	build_pkg XML-Simple
 	build_pkg icon-naming-utils
+	build_pkg at-spi2-core
+	build_pkg at-spi2-atk
+	build_pkg gtk3
 }
