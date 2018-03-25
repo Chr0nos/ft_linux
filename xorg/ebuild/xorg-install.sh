@@ -52,6 +52,10 @@ build() {
 	build_pkg fribidi
 	build_pkg harfbuzz
 	build_pkg pango
-	build_pkg icu
 	build_pkg gtk+
+	build_pkg icu
+	build_pkg glibmm
+	build_pkg libsigc++
+	build_pkg cairomm
+	build_pkg pangomm
 }
