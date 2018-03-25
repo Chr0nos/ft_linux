@@ -10,5 +10,6 @@ build() {
 	build_pkg libwnck
 	build_pkg xfce4-panel
 	build_pkg hicolor-icon-theme
-	build_pkg icon-naming-utils 
+	build_pkg XML-Simple
+	build_pkg icon-naming-utils
 }
