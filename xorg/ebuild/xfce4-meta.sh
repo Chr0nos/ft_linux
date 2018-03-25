@@ -9,4 +9,5 @@ build() {
 	build_pkg gtk-xfce-engine
 	build_pkg libwnck
 	build_pkg xfce4-panel
+	build_pkg rustc
 }
