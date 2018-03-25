@@ -49,6 +49,7 @@ build() {
 	build_pkg libtiff
 	build_pkg gdk-pixbuf
 	build_pkg cairo
+	build_pkg fribidi
 	build_pkg pango
 	build_pkg icu
 	build_pkg gtk+
