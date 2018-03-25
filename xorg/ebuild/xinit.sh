@@ -1,6 +1,6 @@
 build() {
 	VERSION="1.4.0"
-	URL="https://www.x.org/pub/individual/app/$PKG-$VERSIOn.tar.bz2"
+	URL="https://www.x.org/pub/individual/app/$PKG-$VERSION.tar.bz2"
 	prepair $PKG $VERSION bz2 $URL
 
 	# prevent start on virtual terminal 7

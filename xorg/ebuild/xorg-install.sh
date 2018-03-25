@@ -59,4 +59,5 @@ build() {
 	build_pkg cairomm
 	build_pkg pangomm
 	build_pkg xf86-video-vesa
+	build_pkg xinit
 }
