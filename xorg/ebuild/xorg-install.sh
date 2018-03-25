@@ -41,10 +41,12 @@ build() {
 	build_pkg libevdev
 	build_pkg mtdev
 	build_pkg xf86-input-evdev
+	build_pkg twm
 	build_pkg nasm
 	build_pkg yasm
 	build_pkg libjpeg-turbo
 	build_pkg shared-mime-info
 	build_pkg gdk-pixbuf
 	build_pkg icu
+	build_pkg gtk+
 }
