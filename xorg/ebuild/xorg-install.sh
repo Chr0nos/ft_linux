@@ -58,5 +58,5 @@ build() {
 	build_pkg glibmm
 	build_pkg cairomm
 	build_pkg pangomm
-	build_pkg xf86-video-fbdev
+	build_pkg xf86-video-vesa
 }
