@@ -8,7 +8,7 @@ build() {
 				--enable-broadway-backend \
 				--enable-x11-backend
 		compile $PKG-$VERSION && make install
-	if [ $? == 0]; then
+	if [ $? == 0 ]; then
 		gtk-query-immodules-3.0 --update-cache
 		glib-compile-schemas /usr/share/glib-2.0/schemas
 		cleanup
