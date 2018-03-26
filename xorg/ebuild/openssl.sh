@@ -1,8 +1,8 @@
 build() {
 	VERSION="1.0.2n"
 	URL="https://openssl.org/source/openssl-$VERSION.tar.gz"
-	prepair $PKG $VERSIOn gz $URL
-	/config --prefix=/usr --openssldir=/etc/ssl --libdir=lib/openssl-1.0 \
+	prepair $PKG $VERSION gz $URL
+	./config --prefix=/usr --openssldir=/etc/ssl --libdir=lib/openssl-1.0 \
 		shared zlib-dynamic && make depend && compile $PKG-$VERSION 1 &&
 		make INSTALL_PREFIX=$PWD/Dest install_sw
 	rm -rf /usr/lib/openssl-1.0                                   &&
@@ -17,4 +17,6 @@ build() {
 	cp -Rv Dest/usr/include/openssl   /usr/include/openssl-1.0    &&
 
 	sed 's@/include$@/include/openssl-1.0@' -i /usr/lib/openssl-1.0/pkgconfig/*.pc
+	make install
+	cleanup
 }
