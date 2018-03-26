@@ -19,4 +19,6 @@ build() {
 	build_pkg xfdesktop
 	build_pkg xfwm4
 	build_pkg xfce4-session
+	build_pkg terminator
+	build_pkg adwaita-icon-theme
 }
