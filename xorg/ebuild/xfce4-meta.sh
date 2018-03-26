@@ -20,5 +20,8 @@ build() {
 	build_pkg xfwm4
 	build_pkg xfce4-session
 	build_pkg terminator
+	build_pkg libcroco
+	build_pkg vala
+	build_pkg librsvg
 	build_pkg adwaita-icon-theme
 }
