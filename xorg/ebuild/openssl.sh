@@ -1,5 +1,5 @@
 build() {
-	VERSION="1.0.2n"
+	VERSION="1.0.2o"
 	URL="https://openssl.org/source/openssl-$VERSION.tar.gz"
 	prepair $PKG $VERSION gz $URL
 	wget --no-check-certificate http://www.linuxfromscratch.org/patches/blfs/svn/openssl-1.0.2o-compat_versioned_symbols-1.patch
