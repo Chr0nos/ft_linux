@@ -1,6 +1,7 @@
 build() {
+	
 	VERSION="7.60.0-20180407"
-	URL="https://curl.haxx.se/snapshoots/curl-$VERSION.tar.xz"
+	URL="https://curl.haxx.se/snapshots/$PKG-$VERSION.tar.xz"
 	prepair $PKG $VERSION xz $URL
 	./configure --prefix=/usr                           \
 				--disable-static                        \
