@@ -7,7 +7,7 @@ in the right order.
 you need to have wget installed
 
 # usage
-> zsh pkg.sh <package to install>
+> sh pkg.sh <package to install>
 
 # packages
 the builds scripts are in ebuild directory
@@ -15,6 +15,6 @@ the builds scripts are in ebuild directory
 # install xorg ?
 yes, this is the main purpose of this script, just do:
 
-> zsh pkg.sh xorg-install
+> sh pkg.sh xorg-install
 
 this is a meta package with the good order of dependencies.
