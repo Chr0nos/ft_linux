@@ -1,5 +1,5 @@
 build() {
-	VERSION="1.22.1"
+	VERSION="1.25.0"
 	URL="https://static.rust-lang.org/dist/rustc-$VERSION-src.tar.gz"
 	pull $PKG gz $VERSION $URL
 	unpack $PKG-$VERSION-src gz $PKG-$VERSION.tar.gz
