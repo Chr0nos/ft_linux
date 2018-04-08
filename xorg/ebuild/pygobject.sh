@@ -23,5 +23,7 @@ build() {
     prepair $PKG $VERSION $EXT $URL
     build_python2
     build_python3
+    make -C python2 install
+    make -C python3 install
     cleanup
 }
