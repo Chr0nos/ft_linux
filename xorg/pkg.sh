@@ -45,14 +45,13 @@ compile() {
 	fi
 }
 
-# usage : build_generic PKG SOURCEFILE <options to configure>
+# usage : build_generic SOURCEFILE <options to configure>
 build_generic() {
-	PKG="$1"
 	echo "Building $PKG"
-	unpack $PKG $2
+	unpack $PKG $1
 	if [ -f configure ]; then
 		echo "Configuring $PKG from $(pwd)"
-		./configure --prefix=/tools $3
+		./configure --prefix=/tools $2
 		if [ $? != 0 ]; then
 			echo "Error: failed to configure $PKG"
 			exit 1
@@ -60,7 +59,7 @@ build_generic() {
 	fi
 	compile $PKG
 	echo "Installing"
-	make $4 install
+	make $3 install
 	echo "$PKG done."
 }
 
