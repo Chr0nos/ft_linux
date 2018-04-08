@@ -1,9 +1,9 @@
 build_python2() {
-    python2 setup.py build && python2 setup.py install --optimize=1
+    /usr/bin/python2 setup.py build && python2 setup.py install --optimize=1
 }
 
 build_python3() {
-    python3 setup.py build && python3 setup.py install --optimize=1
+    /usr/bin/python3 setup.py build && python3 setup.py install --optimize=1
 }
 
 build() {
