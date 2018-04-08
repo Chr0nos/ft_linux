@@ -51,7 +51,7 @@ build_generic() {
 	prepair $PKG $VERSION $EXT $URL
 	if [ -f configure ]; then
 		echo "Configuring $PKG from $(pwd)"
-		./configure --prefix=/tools $1
+		./configure --prefix=/tools $CFG $1
 		if [ $? != 0 ]; then
 			echo "Error: failed to configure $PKG"
 			exit 1
