@@ -2,6 +2,6 @@ build() {
     VERSION="0.52.0"
     EXT="xz"
     URL="http://ftp.gnome.org/pub/gnome/sources/$PKG/0.52/$PKG-$VERSION.tar.$EXT"
-    CFG="--sysconfdir=/etc --disable-static --enable-introspection"
+    CFG="--sysconfdir=/etc --disable-static --enable-introspection --libdir=/usr/lib"
     build_generic
 }
