@@ -2,7 +2,7 @@ build() {
     VERSION="10.30"
     EXT="bz2"
     URL="https://downloads.sourceforge.net/pcre/$PKG-$VERSION.tar.$EXT"
-    prepair $PKG $VERSOIN $EXT $URL
+    prepair $PKG $VERSION $EXT $URL
     ./configure --prefix=/usr                       \
             --docdir=/usr/share/doc/pcre2-$VERSION \
             --enable-unicode                    \

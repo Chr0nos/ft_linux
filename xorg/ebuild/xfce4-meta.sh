@@ -25,6 +25,7 @@ build() {
 	build_pkg xfce4-settings
 	build_pkg librsvg
 	build_pkg adwaita-icon-theme
+	build_pkg pcre2
 	build_pkg vte
 	build_pkg xfce4-terminal
 }
