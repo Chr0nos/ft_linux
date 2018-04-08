@@ -1,3 +1,4 @@
+
 # build() {
 # 	VERSION="1.0.2o"
 # 	URL="https://openssl.org/source/openssl-$VERSION.tar.gz"
@@ -31,7 +32,7 @@
 # }
 
 build() {
-	VERISON="1.1.0h"
+	VERSION="1.1.0h"
 	URL="https://www.openssl.org/source/$PKG-$VERSION.tar.gz"
 	prepair $PKG $VERSION gz $URL
 	./config --prefix=/usr         \
