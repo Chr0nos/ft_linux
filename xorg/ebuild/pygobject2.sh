@@ -5,5 +5,5 @@ build() {
     CFG="--disable-introspection"
     pull $PKG-$VERSION $EXT $VERSION $URL
     unpack pygobject-$VERSION $EXT pygobject2-$VERSION.tar.$EXT
-    build_generic
+    ./configure --prefix=/usr $CFG && compile $PKG && make install && cleanup
 }

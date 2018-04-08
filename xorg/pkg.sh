@@ -28,7 +28,7 @@ unpack() {
 	echo "Extracting $UNPACK_PKG"
 	tar -xf $TARGET
 	if [ ! -d $UNPACK_PKG ]; then
-		echo "failed to unpack source, check if $FILE exists"
+		echo "failed to unpack source, check if $UNPACK_PKG exists"
 		exit 1
 	fi
 	cd $UNPACK_PKG
