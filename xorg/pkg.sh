@@ -66,6 +66,13 @@ build_generic() {
 	fi
 }
 
+lpull() {
+	pull $PKG $EXT $VERSION $URL
+}
+
+lprepair() {
+	prepair $PKG $VERSION $EXT $URL
+}
 
 # usge: pull [PKG] [EXT] [VERSION] [URL]
 pull() {
