@@ -19,7 +19,8 @@ build() {
 				-g sshd           \
 				-s /bin/false     \
 				-u 50 sshd
-	patch -Np1 -i openssh-7.7p1-openssl-1.1.0-1.patch &&
+	wget --no-check-certificate $PATCH &&
+		patch -Np1 -i openssh-7.7p1-openssl-1.1.0-1.patch &&
 		./configure --prefix=/usr $CFG &&
 		compile $PKG &&
 		make install &&
