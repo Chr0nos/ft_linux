@@ -6,7 +6,7 @@ build() {
 	VERSION="7.7p1"
 	EXT="gz"
 	URL="http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$PKG-$VERSION.tar.$EXT"
-	PATCH="http://www.linuxfromscratch.org/patches/blfs/svn/$PKG-$VERSION-$PKG-1.1.0-1.patch"
+	PATCH="http://www.linuxfromscratch.org/patches/blfs/svn/$PKG-$VERSION-openssl-1.1.0-1.patch"
 	CFG="--sysconfdir=/etc/ssh --with-md5-passwords --with-privsep-path=/var/lib/sshd"
 	lprepair
 
