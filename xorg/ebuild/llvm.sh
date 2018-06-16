@@ -1,12 +1,12 @@
 add_clang() {
-	pull clang xz 5.0.1 http://llvm.org/releases/5.0.1/cfe-5.0.1.src.tar.xz
-	tar -xf $SOURCES/clang-5.0.1.tar.xz -C tools
-	mv tools/cfe-5.0.1.src tools/clang
+	pull clang xz $VERSION http://llvm.org/releases/$VERSION/cfe-$VERSION.src.tar.xz
+	tar -xf $SOURCES/clang-$VERSION.tar.xz -C tools
+	mv tools/cfe-$VERSION.src tools/clang
 }
 
 build() {
 	PKG="llvm"
-	VERSION="5.0.1"
+	VERSION="6.0.0"
 	URL="http://llvm.org/releases/$VERSION/$PKG-$VERSION.src.tar.xz"
 	pull $PKG xz $VERSION $URL
 	unpack $PKG-$VERSION.src xz $PKG-$VERSION.tar.xz
@@ -24,7 +24,7 @@ build() {
 	make install
 	# clang documentation
 	install -v -m644 tools/clang/docs/man/* /usr/share/man/man1
-	install -v -d -m755 /usr/share/doc/llvm-5.0.1/clang-html
-	cp -Rv tools/clang/docs/html/* /usr/share/doc/llvm-5.0.1/clang-html
+	install -v -d -m755 /usr/share/doc/llvm-$VERSION/clang-html
+	cp -Rv tools/clang/docs/html/* /usr/share/doc/llvm-$VERSION/clang-html
 	cleanup $PKG $VERSION
 }
