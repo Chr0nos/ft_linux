@@ -2,7 +2,7 @@
 
 build() {
 	PKG="gcc"
-	VERSION="7.3.0"
+	VERSION="8.1.0"
 	URL="ftp://ftp.uvsq.fr/pub/$PKG/releases/$PKG-$VERSION/$PKG-$VERSION.tar.xz"
 	pull $PKG xz $VERSION $URL
 	unpack $PKG-$VERSION xz

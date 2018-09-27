@@ -1,5 +1,6 @@
 configure_pkg() {
 	echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+	make install-sshd
 }
 
 build() {
