@@ -1,5 +1,6 @@
-export SOURCES="/dev/shm"
-export SRCS="/tmp"
+#!/bin/sh
+export SOURCES="/usr/src/sources"
+export SRCS="/usr/src/"
 export EBUILDS="./ebuild"
 export ROOT=$(pwd)
 export XORG_PREFIX="/usr"
@@ -63,6 +64,14 @@ build_generic() {
 	echo "$PKG done."
 	if [ $? == 0 ]; then
 		cleanup
+	fi
+}
+
+lcompile() {
+	make -j
+	if [ $? != 0 ]; then
+		echo "Compilation of $PKG failed"
+		exit 1
 	fi
 }
 
